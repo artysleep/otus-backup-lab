@@ -45,3 +45,5 @@ drwxr-xr-x+  2 root root staff_u:object_r:default_t:s0 4,0K янв 30 00:26 db
 ```
 Под пользователем custom_u создадим скрипт backup.sh и укажем исполнение каждое воскресенье
   [backup.sh] [crontab -l]
+
+  [backup]: <[https://github.com/](https://github.com/artysleep/otus-backup-lab/blob/main/backup.sh)https://github.com/artysleep/otus-backup-lab/blob/main/backup.sh>

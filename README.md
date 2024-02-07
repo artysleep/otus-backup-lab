@@ -1,7 +1,7 @@
 # otus-backup-lab
 
 ## Листинг с сервера:
-Создадим группу и пользователя, при помощи аттрибутов зададим права rx для целевой директори:
+Создадим группу и пользователя, при помощи аттрибутов зададим права rx для целевой директории:
 ```sh
 groupadd -r custom_gr
 useradd -r -g custom_gr custom_u -s /bin/bash
@@ -9,7 +9,7 @@ passwd custom_u
 setfacl -R -m g:custom_gr:rx /docker
 ```
 
-Проверим размер и аттрибуты 
+Проверим размер и аттрибуты:
 ```sh
 [custom_u@redos734 ~]$ getfacl /docker/
 getfacl: Removing leading '/' from absolute path names
@@ -28,7 +28,7 @@ other::r-x
 31M     /docker/app
 31M     /docker
 ```
-Поменяем дефолтный контекст
+Поменяем дефолтный контекст:
 ```sh
 chcon -R -u staff_u /docker
 ```
@@ -43,8 +43,7 @@ drwxr-xr-x+  2 root root staff_u:object_r:default_t:s0 4,0K янв 30 00:26 db
 -rw-r-xr--+  1 root root staff_u:object_r:default_t:s0  111 янв 30 00:26 .env
 [custom_u@redos734 ~]$
 ```
-Под пользователем custom_u создадим скрипт backup.sh и укажем исполнение каждое воскресенье
-  [backup.sh] [crontab -l]
+Под пользователем custom_u создадим скрипт [backup.sh] и укажем исполнение каждое воскресение в [crontab]:
 
 [backup.sh]: <https://github.com/artysleep/otus-backup-lab/blob/main/backup.sh>
-[crontab -l]: <https://github.com/artysleep/otus-backup-lab/blob/main/crontab%20-l>
+[crontab]: <https://github.com/artysleep/otus-backup-lab/blob/main/crontab%20-l>

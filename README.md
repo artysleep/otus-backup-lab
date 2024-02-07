@@ -1,6 +1,6 @@
 # otus-backup-lab
 
-##Listing from server:
+## Listing from server:
 ```sh
 [custom_u@redos734 ~]$ getfacl /docker/
 getfacl: Removing leading '/' from absolute path names

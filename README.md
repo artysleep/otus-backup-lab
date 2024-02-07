@@ -43,3 +43,5 @@ drwxr-xr-x+  2 root root staff_u:object_r:default_t:s0 4,0K янв 30 00:26 db
 -rw-r-xr--+  1 root root staff_u:object_r:default_t:s0  111 янв 30 00:26 .env
 [custom_u@redos734 ~]$
 ```
+Под пользователем custom_u создадим скрипт backup.sh и укажем исполнение каждое воскресенье
+  [backup.sh] [crontab -l]

@@ -90,3 +90,24 @@ drwxr-xr-x+ 2 root  root  staff_u:object_r:default_t:s0            4096 янв 3
 -rw-r-xr--+ 1 root  root  staff_u:object_r:default_t:s0            1245 янв 30 00:26 docker-compose.yml
 ```
 [лога]: <https://github.com/artysleep/otus-backup-lab/blob/main/backup_log_30-01-2024_02-22-01.txt>
+
+
+### UPDATE
+Удалим на целевом сервере расширенные атрибуты для созданной группы:
+```sh
+[root@redos734 artys]# setfacl -R -x g:custom_gr /docker
+[root@redos734 artys]# getfacl /docker
+getfacl: Removing leading '/' from absolute path names
+# file: docker
+# owner: root
+# group: root
+user::rwx
+group::r-x
+mask::r-x
+other::r-x
+```
+Добавим в sudoers созданную группу:
+```sh
+%custom_gr ALL=(ALL)    NOPASSWD: ALL
+```
+В скрипте перед командами архивирования, отправки и удаления архива добавим sudo.

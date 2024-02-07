@@ -63,16 +63,30 @@ drwxr-xr-x. 13 root     root      4,0K янв 30 02:12 ..
 На удаленном сервере РК:
 
 ```sh
-[artys@test1-redos ~]$ ls -laZ /backups/
+[artys@test1-redos ~]$ ls -la /backups/
 итого 22632
-drwx------.  2 artys artys unconfined_u:object_r:default_t:s0    4096 янв 30 01:36 .
-dr-xr-xr-x. 19 root  root  system_u:object_r:root_t:s0           4096 янв 30 00:30 ..
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307188 янв 30 01:47 docker_bkp_2024-01-30_01-47-25.tgz
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307653 янв 30 01:24 docker_bkp_30-01-2024_02-10-40.tgz
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307166 янв 30 01:27 docker_bkp_30-01-2024_02-13-15.tgz
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307454 янв 30 01:33 docker_bkp_30-01-2024_02-19-01.tgz
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307313 янв 30 01:34 docker_bkp_30-01-2024_02-20-01.tgz
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307217 янв 30 01:35 docker_bkp_30-01-2024_02-21-01.tgz
--rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307247 янв 30 01:36 docker_bkp_30-01-2024_02-22-01.tgz
+drwx------.  2 artys artys    4096 янв 30 01:36 .
+dr-xr-xr-x. 19 root  root     4096 янв 30 00:30 ..
+-rw-r--r--.  1 artys artys 3307188 янв 30 01:47 docker_bkp_2024-01-30_01-47-25.tgz
+-rw-r--r--.  1 artys artys 3307653 янв 30 01:24 docker_bkp_30-01-2024_02-10-40.tgz
+-rw-r--r--.  1 artys artys 3307166 янв 30 01:27 docker_bkp_30-01-2024_02-13-15.tgz
+-rw-r--r--.  1 artys artys 3307454 янв 30 01:33 docker_bkp_30-01-2024_02-19-01.tgz
+-rw-r--r--.  1 artys artys 3307313 янв 30 01:34 docker_bkp_30-01-2024_02-20-01.tgz
+-rw-r--r--.  1 artys artys 3307217 янв 30 01:35 docker_bkp_30-01-2024_02-21-01.tgz
+-rw-r--r--.  1 artys artys 3307247 янв 30 01:36 docker_bkp_30-01-2024_02-22-01.tgz
+```
+
+Проверим, что атрибуты сохраняются:
+```sh
+ sudo tar --same-owner --selinux --acls --xattrs  -xzf /backups/docker_bkp_30-01-2024_02-22-01.tgz
+```
+```sh
+[artys@test1-redos ~]$ ls -laZ docker
+итого 32
+drwxrwxr-x. 4 artys artys unconfined_u:object_r:user_home_t:s0     4096 янв 30 02:06 .
+drwx------. 8 artys artys unconfined_u:object_r:user_home_dir_t:s0 4096 янв 30 02:06 ..
+drwxr-xr-x+ 3 root  root  staff_u:object_r:default_t:s0            4096 янв 30 00:26 app
+drwxr-xr-x+ 2 root  root  staff_u:object_r:default_t:s0            4096 янв 30 00:26 db
+-rw-r-xr--+ 1 root  root  staff_u:object_r:default_t:s0            1245 янв 30 00:26 docker-compose.yml
 ```
 [лога]: <https://github.com/artysleep/otus-backup-lab/blob/main/backup_log_30-01-2024_02-22-01.txt>

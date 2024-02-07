@@ -47,3 +47,32 @@ drwxr-xr-x+  2 root root staff_u:object_r:default_t:s0 4,0K янв 30 00:26 db
 
 [backup.sh]: <https://github.com/artysleep/otus-backup-lab/blob/main/backup.sh>
 [crontab]: <https://github.com/artysleep/otus-backup-lab/blob/main/crontab%20-l>
+
+Для теста задача отрабатывает каждую минуту c записью отдельного [лога]:
+```sh
+[custom_u@redos734 ~]$ ls -lah /var/log/bkp
+итого 2,7M
+drwx------.  2 custom_u custom_gr 4,0K янв 30 02:22 .
+drwxr-xr-x. 13 root     root      4,0K янв 30 02:12 ..
+-rw-r--r--.  1 custom_u custom_gr 529K янв 30 02:13 backup_log_30-01-2024_02-13-15.txt
+-rw-r--r--.  1 custom_u custom_gr 529K янв 30 02:19 backup_log_30-01-2024_02-19-01.txt
+-rw-r--r--.  1 custom_u custom_gr 529K янв 30 02:20 backup_log_30-01-2024_02-20-01.txt
+-rw-r--r--.  1 custom_u custom_gr 529K янв 30 02:21 backup_log_30-01-2024_02-21-01.txt
+-rw-r--r--.  1 custom_u custom_gr 529K янв 30 02:22 backup_log_30-01-2024_02-22-01.txt
+```
+На удаленном сервере РК:
+
+```sh
+[artys@test1-redos ~]$ ls -laZ /backups/
+итого 22632
+drwx------.  2 artys artys unconfined_u:object_r:default_t:s0    4096 янв 30 01:36 .
+dr-xr-xr-x. 19 root  root  system_u:object_r:root_t:s0           4096 янв 30 00:30 ..
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307188 янв 30 01:47 docker_bkp_2024-01-30_01-47-25.tgz
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307653 янв 30 01:24 docker_bkp_30-01-2024_02-10-40.tgz
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307166 янв 30 01:27 docker_bkp_30-01-2024_02-13-15.tgz
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307454 янв 30 01:33 docker_bkp_30-01-2024_02-19-01.tgz
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307313 янв 30 01:34 docker_bkp_30-01-2024_02-20-01.tgz
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307217 янв 30 01:35 docker_bkp_30-01-2024_02-21-01.tgz
+-rw-r--r--.  1 artys artys unconfined_u:object_r:default_t:s0 3307247 янв 30 01:36 docker_bkp_30-01-2024_02-22-01.tgz
+```
+[лога]: <https://github.com/artysleep/otus-backup-lab/blob/main/backup_log_30-01-2024_02-22-01.txt>
